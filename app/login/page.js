@@ -8,14 +8,17 @@ import NavBar from "../../components/NavBar";
 
 import { useRecoilState } from "recoil";
 import { atom } from "recoil";
+import { useRouter } from "next/navigation";
+import { emailState } from "../recoilContextProvider";
 
-export const emailState = atom({
-  key: "emailState", // unique ID (with respect to other atoms/selectors)
-  default: "", // default value (aka initial value)
-});
+// export const emailState = atom({
+//   key: "emailState", // unique ID (with respect to other atoms/selectors)
+//   default: "", // default value (aka initial value)
+// });
 
 /// File is incomplete. You need to add input boxes to take input for users to login.
 function Login() {
+  const router = useRouter();
   const [email, setEmail] = useRecoilState(emailState);
   const [password, setPassword] = React.useState("");
   const [isLoginSuccess, setIsLoginSuccess] = useState(false);
@@ -49,7 +52,7 @@ function Login() {
         setToken(responseData.token);
         localStorage.setItem(email, responseData.token);
         console.log(responseData);
-        Router.push("/courses");
+        router.push("/courses");
       })
       .catch((error) => {
         if (error.response) {

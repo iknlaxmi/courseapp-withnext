@@ -6,10 +6,11 @@ import NavBar from "../../components/NavBar";
 
 /// File is incomplete. You need to add input boxes to take input for users to register.
 function Register() {
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = () => {
+    console.log("data issss", email, password);
     axios
       .post("http://localhost:3000/admin/signup", {
         username: email,
